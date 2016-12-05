@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { PagerComponent } from '../pagination/pager.component';
 import { PaginationModule } from '../pagination/pagination.module';
 
-describe('Component: Pager:', () => {
+fdescribe('Component: Pager:', () => {
 
   let fixture: ComponentFixture<PagerComponent>;
   let context: any;
