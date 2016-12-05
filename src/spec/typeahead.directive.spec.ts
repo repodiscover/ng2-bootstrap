@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
+const { fireEvent } = require('../../scripts/helpers');
 
 interface State {
   id:number;
@@ -28,7 +29,7 @@ class TestTypeaheadComponent {
   ];
 }
 
-describe('Directive: Typeahead', () => {
+fdescribe('Directive: Typeahead', () => {
   let fixture:ComponentFixture<TestTypeaheadComponent>;
   let component:TestTypeaheadComponent;
   let directive:TypeaheadDirective;
@@ -94,7 +95,7 @@ describe('Directive: Typeahead', () => {
 
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
-      inputElement.dispatchEvent(new Event('keyup'));
+      fireEvent(inputElement, 'keyup');
 
       fixture.detectChanges();
       tick(100);
@@ -121,7 +122,7 @@ describe('Directive: Typeahead', () => {
 
     it('should result in 0 matches, when input does not match', fakeAsync(() => {
       inputElement.value = 'foo';
-      inputElement.dispatchEvent(new Event('keyup'));
+      fireEvent(inputElement, 'keyup');
 
       fixture.detectChanges();
       tick(100);
@@ -134,7 +135,7 @@ describe('Directive: Typeahead', () => {
 
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
-      inputElement.dispatchEvent(new Event('keyup'));
+      fireEvent(inputElement, 'keyup');
       directive.typeaheadGroupField = 'region';
 
       fixture.detectChanges();
