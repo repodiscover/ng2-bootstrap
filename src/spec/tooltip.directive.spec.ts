@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from '../tooltip/tooltip.module';
+const { fireEvent } = require('../../scripts/helpers');
 
 const overTemplate = `
     <div class="form-group">
@@ -75,7 +76,7 @@ describe('Directives: Tooltips', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     const tooltipElement: any = element.querySelector('#test-tooltip1');
     tooltipElement.focus();
-    tooltipElement.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    fireEvent(tooltipElement, 'mouseenter');
     fixture.detectChanges();
     tick(context.delay);
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
