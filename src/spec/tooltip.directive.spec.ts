@@ -27,7 +27,7 @@ const overTemplate = `
      <button class="btn btn-danger" id="hideTooltipBtn" (click)="tooltip.hide()">Hide tooltip</button>
    </p>`;
 
-fdescribe('Directives: Tooltips', () => {
+xdescribe('Directives: Tooltips', () => {
   let fixture: ComponentFixture<TestTooltipComponent>;
   let context: any;
 
@@ -56,6 +56,7 @@ fdescribe('Directives: Tooltips', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     const tooltipElement: any = element.querySelector('#test-tooltip1');
     tooltipElement.focus();
+    fixture.detectChanges();
     tick(0);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
@@ -67,6 +68,7 @@ fdescribe('Directives: Tooltips', () => {
     context.delay = 1000;
     fixture.detectChanges();
     tooltipElement.focus();
+    fixture.detectChanges();
     tick(1100);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
@@ -75,10 +77,10 @@ fdescribe('Directives: Tooltips', () => {
   xit('tooltip should be displayed by mouseenter event', fakeAsync(() => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     const tooltipElement: any = element.querySelector('#test-tooltip1');
-    tooltipElement.focus();
     fireEvent(tooltipElement, 'mouseenter');
     fixture.detectChanges();
     tick(context.delay);
+    fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
   }));
 
@@ -86,6 +88,7 @@ fdescribe('Directives: Tooltips', () => {
     const element: Element = fixture.debugElement.nativeElement;
     const showTooltipBtn: any = element.querySelector('#showTooltipBtn');
     showTooltipBtn.click();
+    fixture.detectChanges();
     tick(context.delay);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
@@ -95,6 +98,7 @@ fdescribe('Directives: Tooltips', () => {
     const element: Element = fixture.debugElement.nativeElement;
     const showTooltipBtn: any = element.querySelector('#hideTooltipBtn');
     showTooltipBtn.click();
+    fixture.detectChanges();
     tick(context.delay);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).toBeNull();
